@@ -1,0 +1,16 @@
+.vs/
+.vscode/
+.venv/
+
+node_modules/
+dist/
+.angular/
+
+bin/
+obj/
+
+*.user
+*.suo
+*.log
+
+coverage/

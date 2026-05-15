@@ -1,0 +1,47 @@
+.page-shell {
+  background: #f5f7fb;
+  color: #101828;
+  padding: 32px;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  padding: 28px;
+  width: 100%;
+}
+
+.eyebrow {
+  color: #465fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.description {
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+}

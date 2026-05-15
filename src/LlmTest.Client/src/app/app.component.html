@@ -1,0 +1,42 @@
+<div class="app-layout">
+  <aside class="side-menu">
+    <a class="brand" routerLink="/">
+      <span class="brand-mark">T</span>
+      <span>TailAdmin</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <p class="menu-label">Menu</p>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="nav-icon">W</span>
+        <span>Weather</span>
+      </a>
+      <a routerLink="/yahootaiwan" routerLinkActive="active">
+        <span class="nav-icon">Y</span>
+        <span>Yahoo Taiwan</span>
+      </a>
+      <a routerLink="/menu-page" routerLinkActive="active">
+        <span class="nav-icon">M</span>
+        <span>Menu Page</span>
+      </a>
+    </nav>
+  </aside>
+
+  <section class="main-area">
+    <header class="topbar">
+      <div>
+        <p class="topbar-label">Dashboard</p>
+        <h1>Admin Console</h1>
+      </div>
+
+      <div class="profile-chip">
+        <span class="profile-avatar">LT</span>
+        <span>LlmTest</span>
+      </div>
+    </header>
+
+    <main class="content">
+    <router-outlet></router-outlet>
+    </main>
+  </section>
+</div>

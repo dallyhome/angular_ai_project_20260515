@@ -1,0 +1,36 @@
+<main class="page-shell">
+  <section class="news-panel">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow">Yahoo Taiwan</p>
+        <h1>Latest News</h1>
+      </div>
+
+      <button type="button" class="refresh-button" (click)="loadNews()" [disabled]="isLoading">
+        Refresh
+      </button>
+    </div>
+
+    @if (isLoading) {
+      <p class="status">Loading Yahoo Taiwan news...</p>
+    } @else if (errorMessage) {
+      <p class="status error">{{ errorMessage }}</p>
+    } @else {
+      <div class="news-list">
+        @for (item of news; track item.link) {
+          <article class="news-card">
+            <div class="news-meta">
+              {{ item.publishDate | date: 'yyyy/MM/dd HH:mm' }}
+            </div>
+            <h2>
+              <a [href]="item.link" target="_blank" rel="noopener">
+                {{ item.title }}
+              </a>
+            </h2>
+            <p>{{ item.summary }}</p>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</main>
