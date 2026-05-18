@@ -1,3 +1,6 @@
+@if (isLoginPage) {
+  <router-outlet></router-outlet>
+} @else {
 <div class="app-layout">
   <aside class="side-menu">
     <a class="brand" routerLink="/">
@@ -29,10 +32,10 @@
         <h1>Admin Console</h1>
       </div>
 
-      <div class="profile-chip">
+      <button class="profile-chip" type="button" (click)="logout()">
         <span class="profile-avatar">LT</span>
-        <span>LlmTest</span>
-      </div>
+        <span>登出</span>
+      </button>
     </header>
 
     <main class="content">
@@ -40,3 +43,4 @@
     </main>
   </section>
 </div>
+}

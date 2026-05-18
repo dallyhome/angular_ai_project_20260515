@@ -1,0 +1,43 @@
+<section class="login-page">
+  <div class="login-panel">
+    <div class="brand-block">
+      <span class="brand-mark">T</span>
+      <div>
+        <p>TailAdmin</p>
+        <h1>登入</h1>
+      </div>
+    </div>
+
+    <form (ngSubmit)="login()" class="login-form">
+      <label>
+        <span>帳號</span>
+        <input
+          name="username"
+          type="text"
+          autocomplete="username"
+          [(ngModel)]="username"
+          required
+        />
+      </label>
+
+      <label>
+        <span>密碼</span>
+        <input
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          [(ngModel)]="password"
+          required
+        />
+      </label>
+
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? '登入中...' : '登入' }}
+      </button>
+    </form>
+  </div>
+</section>

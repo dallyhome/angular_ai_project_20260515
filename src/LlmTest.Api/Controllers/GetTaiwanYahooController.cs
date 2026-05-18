@@ -4,8 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LlmTest.Api.Controllers;
 
+/// <summary>
+/// Provides Yahoo Taiwan news data.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[Produces("application/json")]
 public class GetTaiwanYahooController : ControllerBase
 {
     private const string YahooTaiwanNewsRssUrl = "https://tw.news.yahoo.com/rss";
@@ -16,7 +20,16 @@ public class GetTaiwanYahooController : ControllerBase
         _httpClient = httpClientFactory.CreateClient();
     }
 
+    /// <summary>
+    /// Gets the latest Yahoo Taiwan news items from the public RSS feed.
+    /// </summary>
+    /// <param name="cancellationToken">Request cancellation token.</param>
+    /// <returns>A list of Yahoo Taiwan news items.</returns>
+    /// <response code="200">Returns the latest news items.</response>
+    /// <response code="500">The RSS feed could not be loaded.</response>
     [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<TaiwanYahooNewsItem>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<TaiwanYahooNewsItem>>> GetTaiwanYahoo(
         CancellationToken cancellationToken)
     {
@@ -51,6 +64,13 @@ public class GetTaiwanYahooController : ControllerBase
     }
 }
 
+/// <summary>
+/// Yahoo Taiwan news item.
+/// </summary>
+/// <param name="Title">News title.</param>
+/// <param name="Link">News URL.</param>
+/// <param name="PublishDate">News publish date.</param>
+/// <param name="Summary">News summary.</param>
 public record TaiwanYahooNewsItem(
     string Title,
     string Link,
