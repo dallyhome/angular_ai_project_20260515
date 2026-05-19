@@ -4,25 +4,30 @@ using LlmTest.Api.Controllers;
 namespace LlmTest.Api;
 
 /// <summary>
-/// Calls the company order API.
+/// 負責呼叫 CompanyApi 的 HTTP client。
 /// </summary>
 public class CompanyApiClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
+    /// <summary>
+    /// 注入 HttpClientFactory，建立對 CompanyApi 的 HTTP 呼叫。
+    /// </summary>
+    /// <param name="httpClientFactory">ASP.NET Core HttpClient factory。</param>
     public CompanyApiClient(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
-    /// Gets one order from CompanyApi.
+    /// 呼叫 CompanyApi /api/orders/{orderId}，取得指定訂單資料。
     /// </summary>
-    /// <param name="orderId">The order id.</param>
+    /// <param name="orderId">訂單編號。</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
-    /// <returns>The order detail.</returns>
+    /// <returns>訂單明細。</returns>
     public async Task<OrderDto> GetOrder(string orderId, CancellationToken cancellationToken)
     {
+        // 這裡模擬 MCP Server 對公司內部 API 的實際 HTTP 呼叫。
         var httpClient = _httpClientFactory.CreateClient();
         var order = await httpClient.GetFromJsonAsync<OrderDto>(
             $"http://localhost:5000/api/orders/{Uri.EscapeDataString(orderId)}",

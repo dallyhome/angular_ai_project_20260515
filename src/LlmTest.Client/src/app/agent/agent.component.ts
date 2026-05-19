@@ -18,6 +18,9 @@ export class AgentComponent {
 
   constructor(private readonly agentService: AgentService) {}
 
+  /**
+   * 送出使用者輸入的自然語言問題，呼叫後端 /api/agent/ask，並把 Agent 回覆顯示在畫面上。
+   */
   ask(): void {
     const message = this.message.trim();
     if (!message) {
@@ -26,10 +29,12 @@ export class AgentComponent {
       return;
     }
 
+    // 送出前清空舊結果，並切換成 loading 狀態避免重複送出。
     this.isLoading = true;
     this.errorMessage = '';
     this.answer = '';
 
+    // 呼叫 Angular service，讓 service 負責和 ASP.NET Core API 溝通。
     this.agentService.ask(message)
       .subscribe({
         next: response => {

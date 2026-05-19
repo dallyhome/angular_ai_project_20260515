@@ -18,6 +18,9 @@ export class AgentService {
 
   constructor(private readonly http: HttpClient) {}
 
+  /**
+   * 呼叫 ASP.NET Core Agent API，將使用者輸入送到後端解析並取得回答。
+   */
   ask(message: string): Observable<AgentAskResponse> {
     return this.http.post<AgentAskResponse>(this.apiUrl, { message });
   }
