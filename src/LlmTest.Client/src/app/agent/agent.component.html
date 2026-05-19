@@ -1,0 +1,40 @@
+<main class="page-shell">
+  <section class="panel">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow">MCP Order Lookup</p>
+        <h1>Agent</h1>
+      </div>
+    </div>
+
+    <form class="ask-form" (ngSubmit)="ask()">
+      <label for="message">Message</label>
+      <div class="input-row">
+        <input
+          id="message"
+          name="message"
+          type="text"
+          [(ngModel)]="message"
+          autocomplete="off"
+          [disabled]="isLoading"
+        />
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? '查詢中' : '送出' }}
+        </button>
+      </div>
+    </form>
+
+    <div class="flow">
+      <span>Angular</span>
+      <span>/api/agent/ask</span>
+      <span>GetOrder</span>
+      <span>CompanyApi</span>
+    </div>
+
+    @if (errorMessage) {
+      <p class="status error">{{ errorMessage }}</p>
+    } @else if (answer) {
+      <p class="status success">{{ answer }}</p>
+    }
+  </section>
+</main>

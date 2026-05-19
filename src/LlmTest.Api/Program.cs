@@ -1,4 +1,5 @@
 using System.Reflection;
+using LlmTest.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<CompanyApiClient>();
+builder.Services.AddScoped<OrderMcpServer>();
+builder.Services.AddScoped<OrderMcpClient>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularClient", policy =>
@@ -32,9 +36,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseCors("AngularClient");
 app.MapControllers();
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 var summaries = new[]
 {
